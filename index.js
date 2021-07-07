@@ -17,6 +17,30 @@ const expenseAmount = document.getElementById('expense-amount');
 let balance = 0, income = 0, expense = 0;
 let ENTRY_LIST;
 
+//EVENT LISTENERS
+addIncomeBtn.addEventListener('click', function(){
+    if(!incomeName.value || !incomeAmount.value) return;
+     let income = {
+         type: 'income',
+         name: incomeName.value,
+         amount: parseFloat(incomeAmount.value),
+     }
+     ENTRY_LIST.push(income)
+
+ });
+ 
+ addExpenseBtn.addEventListener('click', function(){
+    if(!expenseName.value || !expenseAmount.value) return;
+    let expense = {
+        type: 'expense',
+        name: expenseName.value,
+        amount: Number(expenseAmount.value),
+    }
+    ENTRY_LIST.push(expense)
+
+});
+
+
 function updateBalanceStatement(balance) {
     if (balance < 0) {
         balanceStatement.innerHTML = `Ooops! You are <span class="deep-orange-text text-lighten-2">${Math.abs(balance)}</span> PLN under the budget..`
