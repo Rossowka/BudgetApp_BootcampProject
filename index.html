@@ -19,12 +19,96 @@
                     <h3 style="font-family:Montserrat; font-weight:600; margin-top: 0px; margin-bottom: 20px;" class="white-text center-align card-title">HOME BUDGET</h3>
                 </div>
             </div>
-<!-- CURRENT BUDGET SUMMARY -->
+            <!-- CURRENT BUDGET SUMMARY -->
             <div class="col s12">
                 <h6 id="budget-summary" class="center-align">Type in your money Inflow and Outflow and submit with the "+" button.</h6>
             </div>
         </section>
-        
+
+        <section class="row">
+            <!-- INCOME -->
+            <div class="col s12 m6">
+                <div class="card-panel z-depth-2 center-align teal lighten-2">
+                    <h5 class="white-text" style="font-family: Montserrat; font-weight: 600;">Income</h5>
+                </div>
+
+                <div class="card row center-align z-depth-1" style="margin-left: 0;margin-right: 0;">
+                    <span>Total: </span>
+                    <span class="teal-text" id="total-income">0</span>
+                    <span>PLN</span>
+                </div>
+
+                <form>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Payee" id="income-name" type="text" class="validate">
+                            <label for="income-name" class="active">Inflow</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="number" id="income-amount" placeholder="Amount">
+                        </div>
+                        <div class="col s2">
+                            <a class="btn-floating btn-medium waves-effect waves-light grey"><i class="medium material-icons" id="add-income">add</i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="highlight responsive-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">PAYEE</th>
+                            <th>AMOUNT</th>
+                            <th style="width: 10%;"> </th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="income-table">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- EXPENSE -->
+            <div class="col s12 m6">
+                <div class="card-panel z-depth-2 deep-orange lighten-2">
+                    <h5 class="center-align white-text" style="font-family: Montserrat; font-weight: 600;">Expense</h5>
+                </div>
+
+                <div class="card row center-align z-depth-1" style="margin-left: 0;margin-right: 0;">
+                    <span>Total: </span>
+                    <span class="deep-orange-text" id="total-expense">0</span>
+                    <span>PLN</span>
+                </div>
+
+                <form>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Payee" id="expense-name" type="text" class="validate">
+                            <label for="expense-name" class="active">Outflow</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="number" id="expense-amount" placeholder="Amount">
+                        </div>
+                        <div class="col s2">
+                            <a class="btn-floating btn-medium waves-effect waves-light grey"><i class="material-icons" id="add-expense">add</i></a>
+                        </div>
+                    </div>
+                </form>
+
+                <table class="highlight responsive-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">PAYEE</th>
+                            <th>AMOUNT</th>
+                            <th style="width: 10%;"> </th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="expense-table">
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
     <script src="index.js"></script>
 </body>
