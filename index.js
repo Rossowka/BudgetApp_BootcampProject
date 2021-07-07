@@ -61,3 +61,19 @@ function updateBalanceStatement(balance) {
     };
 }
 
+function addRow(table, color, name, amount, id) {
+    const entry = ` 
+    <tr id="${id}"> 
+        <td class="editable">${name}</td>
+        <td class="editable ${color}">${amount}</td>
+        <td>
+            <i class="material-icons" id="edit-row">edit</i>
+            <i class="material-icons hide" id="save-row">save</i>
+            <i class="material-icons" id="delete-row">cancel</i>
+        </td>
+    </tr>
+    `;
+
+    const position = 'afterbegin';
+    table.insertAdjacentHTML(position, entry);
+}
