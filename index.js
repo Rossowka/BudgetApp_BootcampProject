@@ -12,3 +12,8 @@ const incomeName = document.getElementById('income-name');
 const incomeAmount = document.getElementById('income-amount');
 const expenseName = document.getElementById('expense-name');
 const expenseAmount = document.getElementById('expense-amount');
+
+//VARIABLES
+let balance = 0, income = 0, expense = 0;
+let ENTRY_LIST;
+
