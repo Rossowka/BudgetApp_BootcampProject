@@ -27,6 +27,9 @@ addIncomeBtn.addEventListener('click', function(){
      }
      ENTRY_LIST.push(income)
 
+     updateUI();
+     clearInput([expenseName, expenseAmount]);
+ 
  });
  
  addExpenseBtn.addEventListener('click', function(){
@@ -37,7 +40,9 @@ addIncomeBtn.addEventListener('click', function(){
         amount: Number(expenseAmount.value),
     }
     ENTRY_LIST.push(expense)
-
+    
+    updateUI();
+    clearInput([expenseName, expenseAmount]);
 });
 
 //FUNCTIONALITY
@@ -103,3 +108,9 @@ function clearElement(elements) {
     })
 }
     
+function clearInput(inputsArray) {
+    inputsArray.forEach(input => {
+        input.value = '';
+    });
+}
+
