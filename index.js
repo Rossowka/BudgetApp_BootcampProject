@@ -77,3 +77,29 @@ function addRow(table, color, name, amount, id) {
     const position = 'afterbegin';
     table.insertAdjacentHTML(position, entry);
 }
+
+function updateUI() {
+    income = calculateTotal('income', ENTRY_LIST);
+    expense = calculateTotal('expense', ENTRY_LIST);
+    balance = Number(income - expense);
+    updateBalanceStatement(balance);
+
+    totalIncomeEl.innerHTML = income;
+    totalExpenseEl.innerHTML = expense;
+
+    clearElement([incomeTable, expenseTable])
+
+    ENTRY_LIST.forEach((entry, index) => {
+        if (entry.type == 'income') {
+            addRow(incomeTable, 'teal-text text-lighten-2', entry.name, entry.amount, index);
+        } else if (entry.type == 'expense') {
+            addRow(expenseTable, 'deep-orange-text text-lighten-2', entry.name, entry.amount, index);
+        };
+    });
+
+function clearElement(elements) {
+    elements.forEach(element => {
+        element.innerHTML = '';
+    })
+}
+    
