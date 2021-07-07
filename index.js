@@ -118,3 +118,7 @@ function addRow(table, color, name, amount, id) {
     table.insertAdjacentHTML(position, entry);
 }
 
+function deleteRow(entry){
+    ENTRY_LIST.splice(entry.id, 1);
+    updateUI();
+}
