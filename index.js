@@ -30,63 +30,23 @@ addIncomeBtn.addEventListener('click', function(){
          amount: parseFloat(incomeAmount.value),
      }
      ENTRY_LIST.push(income)
-
      updateUI();
-     clearInput([expenseName, expenseAmount]);
- 
+     clearInput([incomeName, incomeAmount]);
  });
  
  addExpenseBtn.addEventListener('click', function(){
-    if(!expenseName.value || !expenseAmount.value) return;
-    let expense = {
-        type: 'expense',
-        name: expenseName.value,
-        amount: Number(expenseAmount.value),
-    }
-    ENTRY_LIST.push(expense)
-
-    updateUI();
-    clearInput([expenseName, expenseAmount]);
-});
+     if(!expenseName.value || !expenseAmount.value) return;
+     let expense = {
+         type: 'expense',
+         name: expenseName.value,
+         amount: Number(expenseAmount.value),
+     }
+     ENTRY_LIST.push(expense)
+     updateUI();
+     clearInput([expenseName, expenseAmount]);
+ });
 
 //FUNCTIONALITY
-function calculateTotal(type, ENTRY_LIST) {
-    let sum = 0;
-    ENTRY_LIST.forEach(entry => {
-        if (entry.type == type) {
-            sum += entry.amount;
-        }
-    });
-    return sum;
-}
-
-function updateBalanceStatement(balance) {
-    if (balance < 0) {
-        balanceStatement.innerHTML = `Ooops! You are <span class="deep-orange-text text-lighten-2">${Math.abs(balance)}</span> PLN under the budget..`
-    } else if (balance > 0){
-        balanceStatement.innerHTML = `You can still spend <span class="teal-text text-lighten-2">${balance}</span> PLN`
-    } else if (balance == 0){
-        balanceStatement.innerHTML = `You have achieved a perfect balance! 🥳`
-    };
-}
-
-function addRow(table, color, name, amount, id) {
-    const entry = ` 
-    <tr id="${id}"> 
-        <td class="editable">${name}</td>
-        <td class="editable ${color}">${amount}</td>
-        <td>
-            <i class="material-icons" id="edit-row">edit</i>
-            <i class="material-icons hide" id="save-row">save</i>
-            <i class="material-icons" id="delete-row">cancel</i>
-        </td>
-    </tr>
-    `;
-
-    const position = 'afterbegin';
-    table.insertAdjacentHTML(position, entry);
-}
-
 function updateUI() {
     income = calculateTotal('income', ENTRY_LIST);
     expense = calculateTotal('expense', ENTRY_LIST);
@@ -106,15 +66,55 @@ function updateUI() {
         };
     });
 
+    localStorage.setItem('entry_list', JSON.stringify(ENTRY_LIST));
+}
+
+function updateBalanceStatement(balance) {
+    if (balance < 0) {
+        balanceStatement.innerHTML = `Ooops! You are <span class="deep-orange-text text-lighten-2">${Math.abs(balance)}</span> PLN under the budget..`
+    } else if (balance > 0){
+        balanceStatement.innerHTML = `You can still spend <span class="teal-text text-lighten-2">${balance}</span> PLN`
+    } else if (balance == 0){
+        balanceStatement.innerHTML = `You have achieved a perfect balance! 🥳`
+    };
+}
+
+function clearInput(inputsArray) {
+    inputsArray.forEach(input => {
+        input.value = '';
+    });
+}
+
 function clearElement(elements) {
     elements.forEach(element => {
         element.innerHTML = '';
     })
 }
-    
-function clearInput(inputsArray) {
-    inputsArray.forEach(input => {
-        input.value = '';
+
+function calculateTotal(type, ENTRY_LIST) {
+    let sum = 0;
+    ENTRY_LIST.forEach(entry => {
+        if (entry.type == type) {
+            sum += entry.amount;
+        }
     });
+    return sum;
+}
+
+function addRow(table, color, name, amount, id) {
+    const entry = ` 
+    <tr id="${id}"> 
+        <td class="editable">${name}</td>
+        <td class="editable ${color}">${amount}</td>
+        <td>
+            <i class="material-icons" id="edit-row">edit</i>
+            <i class="material-icons hide" id="save-row">save</i>
+            <i class="material-icons" id="delete-row">cancel</i>
+        </td>
+    </tr>
+    `;
+
+    const position = 'afterbegin';
+    table.insertAdjacentHTML(position, entry);
 }
 
