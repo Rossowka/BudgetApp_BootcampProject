@@ -40,6 +40,16 @@ addIncomeBtn.addEventListener('click', function(){
 
 });
 
+//FUNCTIONALITY
+function calculateTotal(type, ENTRY_LIST) {
+    let sum = 0;
+    ENTRY_LIST.forEach(entry => {
+        if (entry.type == type) {
+            sum += entry.amount;
+        }
+    });
+    return sum;
+}
 
 function updateBalanceStatement(balance) {
     if (balance < 0) {
@@ -50,3 +60,4 @@ function updateBalanceStatement(balance) {
         balanceStatement.innerHTML = `You have achieved a perfect balance! 🥳`
     };
 }
+
