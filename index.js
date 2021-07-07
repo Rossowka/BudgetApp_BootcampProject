@@ -129,4 +129,28 @@ function editRow(editableInput, btns){
         element.classList.remove('deep-orange-text', 'teal-text', 'text-lighten-2')
         element.classList.add('amber-text');
     });
+
+    toggleBtnsVisibility(btns);
+}
+
+function toggleBtnsVisibility(btns){
+    btns.forEach(element => {
+        element.classList.toggle('hide');
+    });
+}
+
+function saveRow(editableInput, btns, entry){
+    const newName = editableInput[0].innerHTML;
+    const newAmount = parseFloat(editableInput[1].innerHTML);
+
+    if (Number.isNaN(newAmount)) {
+        ENTRY_LIST[entry.id].amount = 0;
+    } else {
+        ENTRY_LIST[entry.id].amount = newAmount;
+    }
+
+    ENTRY_LIST[entry.id].name = newName;
+
+    toggleBtnsVisibility(btns);
+    updateUI();
 }
