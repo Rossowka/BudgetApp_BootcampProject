@@ -122,3 +122,11 @@ function deleteRow(entry){
     ENTRY_LIST.splice(entry.id, 1);
     updateUI();
 }
+
+function editRow(editableInput, btns){
+    editableInput.forEach(element => {
+        element.setAttribute('contenteditable', 'true');
+        element.classList.remove('deep-orange-text', 'teal-text', 'text-lighten-2')
+        element.classList.add('amber-text');
+    });
+}
