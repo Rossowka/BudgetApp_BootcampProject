@@ -34,17 +34,21 @@ addIncomeBtn.addEventListener('click', function(){
      clearInput([incomeName, incomeAmount]);
  });
  
- addExpenseBtn.addEventListener('click', function(){
-     if(!expenseName.value || !expenseAmount.value) return;
-     let expense = {
-         type: 'expense',
-         name: expenseName.value,
-         amount: Number(expenseAmount.value),
-     }
-     ENTRY_LIST.push(expense)
-     updateUI();
-     clearInput([expenseName, expenseAmount]);
- });
+addExpenseBtn.addEventListener('click', function(){
+    if(!expenseName.value || !expenseAmount.value) return;
+    let expense = {
+        type: 'expense',
+        name: expenseName.value,
+        amount: Number(expenseAmount.value),
+    }
+    ENTRY_LIST.push(expense)
+    updateUI();
+    clearInput([expenseName, expenseAmount]);
+});
+
+incomeTable.addEventListener('click', targetRow);
+expenseTable.addEventListener('click', targetRow);
+
 
 //FUNCTIONALITY
 function updateUI() {
@@ -153,4 +157,20 @@ function saveRow(editableInput, btns, entry){
 
     toggleBtnsVisibility(btns);
     updateUI();
+}
+
+function targetRow(event) {
+    const targetBtn = event.target;
+    const btnsCell = targetBtn.parentNode;
+    const entry = btnsCell.parentNode;
+    const btns = btnsCell.querySelectorAll('i');
+    const editableInput = entry.querySelectorAll('td.editable');
+
+    if(targetBtn.id == 'delete-row'){
+        deleteRow(entry);
+    } else if (targetBtn.id == 'edit-row'){
+        editRow(editableInput, btns);
+    } else if (targetBtn.id == 'save-row'){
+        saveRow(editableInput, btns, entry);
+    }
 }
