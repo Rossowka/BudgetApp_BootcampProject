@@ -17,6 +17,10 @@ const expenseAmount = document.getElementById('expense-amount');
 let balance = 0, income = 0, expense = 0;
 let ENTRY_LIST;
 
+//CHECK FOR DATA IN LOCAL STORAGE
+ENTRY_LIST = JSON.parse(localStorage.getItem('entry_list')) || [];
+updateUI();
+
 //EVENT LISTENERS
 addIncomeBtn.addEventListener('click', function(){
     if(!incomeName.value || !incomeAmount.value) return;
@@ -40,7 +44,7 @@ addIncomeBtn.addEventListener('click', function(){
         amount: Number(expenseAmount.value),
     }
     ENTRY_LIST.push(expense)
-    
+
     updateUI();
     clearInput([expenseName, expenseAmount]);
 });
